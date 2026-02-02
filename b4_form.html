@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Detailed Form</title>
+</head>
+<body>
+
+<form action="#">
+    <h3>Basic Info</h3>
+    <hr>
+    <table border="0" cellpadding="5" width="600">
+        <tr>
+            <td width="150">Employee ID</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>First Name</td>
+            <td><input type="text" style="width: 100%;"></td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td>
+                <input type="radio" name="gender"> Male <br>
+                <input type="radio" name="gender"> Female <br>
+                <input type="radio" name="gender"> XXX <br>
+                <input type="radio" name="gender"> ZZZ
+            </td>
+        </tr>
+        <tr>
+            <td>Title</td>
+            <td><input type="text" style="width: 100%;"></td>
+        </tr>
+        <tr>
+            <td>Suffix</td>
+            <td><input type="text" style="width: 100%;"></td>
+        </tr>
+        <tr>
+            <td>BirthDate</td>
+            <td><input type="text" style="width: 100%;"></td>
+        </tr>
+        <tr>
+            <td>HireDate</td>
+            <td><input type="text" style="width: 100%;"></td>
+        </tr>
+        <tr>
+            <td>SSN # (if applicable)</td>
+            <td><input type="text" style="width: 100%;"></td>
+        </tr>
+        <tr>
+            <td>Reports To</td>
+            <td>
+                <select>
+                    <option></option>
+                    <option>Buchanan</option>
+                    <option>Other</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+
+    <h3>Contact Info</h3>
+    <hr>
+    <table border="0" cellpadding="5" width="600">
+        <tr>
+            <td width="150">Email</td>
+            <td><input type="email" style="width: 100%;"></td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td><input type="text" style="width: 100%;"></td>
+        </tr>
+        <tr>
+            <td>City</td>
+            <td><input type="text" style="width: 100%;"></td>
+        </tr>
+        <tr>
+            <td>Region</td>
+            <td><input type="text" style="width: 100%;"></td>
+        </tr>
+        <tr>
+            <td>Postal Code</td>
+            <td><input type="text" style="width: 100%;"></td>
+        </tr>
+        <tr>
+            <td>Country</td>
+            <td>
+                <select style="width: 150px;">
+                    <option></option>
+                    <option>Russian Federation</option>
+                    <option>Vietnam</option>
+                    <option>USA</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>US Home Phone</td>
+            <td><input type="text" style="width: 100%;"></td>
+        </tr>
+        <tr>
+            <td>Photo</td>
+            <td><input type="text" style="width: 100%;"></td>
+        </tr>
+    </table>
+
+    <h3>Optional Info</h3>
+    <hr>
+    <table border="0" cellpadding="5" width="600">
+        <tr>
+            <td width="150" valign="top">Notes</td>
+            <td>
+                <textarea rows="6" style="width: 100%;"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>Preferred Shift</td>
+            <td>
+                <input type="checkbox"> Regular <br>
+                <input type="checkbox"> Gravy Yard
+            </td>
+        </tr>
+        <tr>
+            <td>Active?</td>
+            <td><input type="checkbox"></td>
+        </tr>
+        <tr>
+            <td width="150" valign="top">Are you human?</td>
+            <td align="right">
+                <font size="5" face="Courier New" style="letter-spacing: 5px;">
+                    <b></b>
+                </font>
+                <br>
+                <small><a href="#">Click to change</a></small>
+                <br><br>
+                <input type="text" style="width: 100%;">
+            </td>
+        </tr>
+    </table>
+
+    <br>
+    <table width="600">
+        <tr>
+            <td align="right">
+                <button type="submit">Submit</button>
+                <button type="button">Cancel</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>
