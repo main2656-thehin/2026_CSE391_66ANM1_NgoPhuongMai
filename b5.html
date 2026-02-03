@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Bài 5 - HR Management</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f2f4f7;
+}
+
+.header {
+    background: #1f1f1f;
+    color: white;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header a {
+    color: #ccc;
+    margin-left: 15px;
+    text-decoration: none;
+}
+
+.search input {
+    padding: 6px;
+}
+.search button {
+    padding: 6px 10px;
+}
+
+.content {
+    padding: 20px;
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-add {
+    background: #0d6efd;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+}
+
+table {
+    width: 100%;
+    background: white;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+}
+
+th {
+    background: #f8f9fa;
+}
+
+.btn-edit {
+    background: #ffc107;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+.btn-delete {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+.form-box {
+    width: 600px;
+    margin: 30px auto;
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.form-header {
+    background: #0d6efd;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-body {
+    padding: 15px;
+}
+
+.form-body table {
+    width: 100%;
+}
+
+.form-body td {
+    padding: 8px;
+    border: none;
+}
+
+.form-body input,
+.form-body select {
+    width: 100%;
+    padding: 6px;
+}
+
+.form-body label {
+    margin-right: 20px;
+}
+
+.form-footer {
+    text-align: right;
+    padding: 10px;
+}
+
+.btn-save {
+    background: #198754;
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 4px;
+}
+
+.btn-cancel {
+    background: #6c757d;
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 4px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <div>
+        <b>HR Management</b>
+        <a href="#">Home</a>
+        <a href="#">Contact</a>
+    </div>
+    <div class="search">
+        <input type="text" placeholder="Search...">
+        <button>Search</button>
+    </div>
+</div>
+
+<div class="content">
+    <div class="title">
+        <h2>Employee</h2>
+        <button class="btn-add">+ Add</button>
+    </div>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Position</th>
+            <th>Action</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Fatima Beatriz</td>
+            <td>fatima@gmail.com</td>
+            <td>0985674321</td>
+            <td>Staff</td>
+            <td>
+                <button class="btn-edit">Edit</button>
+                <button class="btn-delete">Delete</button>
+            </td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Gabriel Hanna</td>
+            <td>gabriel@gmail.com</td>
+            <td>0353674231</td>
+            <td>Staff</td>
+            <td>
+                <button class="btn-edit">Edit</button>
+                <button class="btn-delete">Delete</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="form-box">
+    <div class="form-header">
+        <b>New Employee</b>
+        <span>X</span>
+    </div>
+
+    <form>
+        <div class="form-body">
+            <table>
+                <tr>
+                    <td>Name</td>
+                    <td>Email</td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="name"></td>
+                    <td><input type="text" name="email"></td>
+                </tr>
+                <tr>
+                    <td>Phone</td>
+                    <td>Position</td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="phone"></td>
+                    <td>
+                        <select name="position">
+                            <option value="">-- Select Position --</option>
+                            <option value="Staff">Staff</option>
+                            <option value="Manager">Manager</option>
+                            <option value="CEO">CEO</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Sex</td>
+                    <td>
+                        <label>
+                            <input type="radio" name="sex" value="Male"> Male
+                        </label>
+                        <label>
+                            <input type="radio" name="sex" value="Female"> Female
+                        </label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="form-footer">
+            <button type="submit" class="btn-save">Save</button>
+            <button type="reset" class="btn-cancel">Cancel</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
+
