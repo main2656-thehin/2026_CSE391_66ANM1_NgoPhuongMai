@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Bảng Điểm Sinh Viên</title>
+
+<style>
+body{
+    font-family: Arial;
+    margin:40px;
+}
+
+table{
+    border-collapse: collapse;
+    width:600px;
+    margin-top:20px;
+}
+
+th,td{
+    border:1px solid #ccc;
+    padding:8px;
+    text-align:center;
+}
+
+th{
+    background:#f2f2f2;
+}
+
+.low{
+    background:yellow;
+}
+
+button{
+    padding:5px 10px;
+}
+
+#stats{
+    margin-top:15px;
+    font-weight:bold;
+}
+</style>
+
+</head>
+
+<body>
+
+<h2>Quản Lý Điểm Sinh Viên</h2>
+
+<label>Họ tên:</label>
+<input type="text" id="name">
+
+<label>Điểm:</label>
+<input type="number" id="score" min="0" max="10">
+
+<button onclick="addStudent()">Thêm</button>
+
+<table>
+<thead>
+<tr>
+<th>STT</th>
+<th>Họ tên</th>
+<th>Điểm</th>
+<th>Xếp loại</th>
+<th>Thao tác</th>
+</tr>
+</thead>
+
+<tbody id="tableBody">
+
+</tbody>
+</table>
+
+<div id="stats">
+Tổng sinh viên: 0 | Điểm trung bình: 0
+</div>
+
+<script>
+
+let students=[];
+
+function getRank(score){
+
+    if(score>=8.5) return "Giỏi";
+    if(score>=7) return "Khá";
+    if(score>=5) return "Trung bình";
+    return "Yếu";
+
+}
+
+function renderTable(){
+
+    let tbody=document.getElementById("tableBody");
+    tbody.innerHTML="";
+
+    let total=0;
+
+    students.forEach((sv,index)=>{
+
+        let tr=document.createElement("tr");
+
+        if(sv.score<5){
+            tr.classList.add("low");
+        }
+
+        tr.innerHTML=`
+        <td>${index+1}</td>
+        <td>${sv.name}</td>
+        <td>${sv.score}</td>
+        <td>${getRank(sv.score)}</td>
+        <td><button onclick="deleteStudent(${index})">Xóa</button></td>
+        `;
+
+        tbody.appendChild(tr);
+
+        total+=sv.score;
+
+    });
+
+    let avg=students.length? (total/students.length).toFixed(2):0;
+
+    document.getElementById("stats").innerText=
+    "Tổng sinh viên: "+students.length+" | Điểm trung bình: "+avg;
+
+}
+
+function addStudent(){
+
+    let name=document.getElementById("name").value.trim();
+    let score=parseFloat(document.getElementById("score").value);
+
+    if(name===""){
+        alert("Chưa nhập họ tên");
+        return;
+    }
+
+    if(isNaN(score) || score<0 || score>10){
+        alert("Điểm phải từ 0 đến 10");
+        return;
+    }
+
+    students.push({
+        name:name,
+        score:score
+    });
+
+    renderTable();
+
+    document.getElementById("name").value="";
+    document.getElementById("score").value="";
+    document.getElementById("name").focus();
+
+}
+
+function deleteStudent(index){
+
+    students.splice(index,1);
+
+    renderTable();
+
+}
+
+document.getElementById("score").addEventListener("keypress",function(e){
+
+    if(e.key==="Enter"){
+        addStudent();
+    }
+
+});
+
+</script>
+
+</body>
+</html>
