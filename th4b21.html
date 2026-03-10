@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Đăng ký</title>
+</head>
+
+<body>
+
+<form>
+
+Họ và tên<br>
+<input type="text"
+required
+minlength="3"
+pattern="[A-Za-zÀ-ỹ\s]+"
+title="Vui lòng nhập ít nhất 3 ký tự, chỉ chữ cái và khoảng trắng">
+
+<br><br>
+
+Email<br>
+<input type="email"
+required
+title="Vui lòng nhập email đúng định dạng">
+
+<br><br>
+
+Số điện thoại<br>
+<input type="text"
+required
+pattern="0[0-9]{9}"
+title="Vui lòng nhập số điện thoại 10 số bắt đầu bằng 0">
+
+<br><br>
+
+Mật khẩu<br>
+<input type="password"
+required
+pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}"
+title="Ít nhất 8 ký tự, có chữ hoa, chữ thường và số">
+
+<br><br>
+
+Xác nhận mật khẩu<br>
+<input type="password"
+required
+title="Vui lòng nhập lại mật khẩu">
+
+<br><br>
+
+Giới tính<br>
+<input type="radio" name="gender" required> Nam
+<input type="radio" name="gender"> Nữ
+
+<br><br>
+
+<input type="checkbox" required>
+Tôi đồng ý điều khoản
+
+<br><br>
+
+<button type="submit">Đăng ký</button>
+
+</form>
+
+</body>
+</html>
