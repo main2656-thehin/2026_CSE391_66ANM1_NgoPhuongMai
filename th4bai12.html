@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Danh sách sinh viên</title>
+
+<style>
+table{
+    border-collapse: collapse;
+    width: 500px;
+}
+th,td{
+    border:1px solid black;
+    padding:5px;
+    text-align:center;
+}
+th{
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<h3>Danh sách sinh viên</h3>
+
+<input type="text" id="search" placeholder="Tìm tên...">
+
+<select id="filter">
+<option value="all">Tất cả</option>
+<option value="Giỏi">Giỏi</option>
+<option value="Khá">Khá</option>
+<option value="Trung bình">Trung bình</option>
+<option value="Yếu">Yếu</option>
+</select>
+
+<table>
+<tr>
+<th>Tên</th>
+<th id="diem">Điểm</th>
+<th>Xếp loại</th>
+</tr>
+
+<tbody id="tableBody"></tbody>
+
+</table>
+
+<script>
+
+var students = [
+{name:"Nguyễn An", score:9, type:"Giỏi"},
+{name:"Trần Bình", score:7.5, type:"Khá"},
+{name:"Lê Cường", score:5.5, type:"Trung bình"},
+{name:"Phạm Dũng", score:4, type:"Yếu"},
+{name:"Nguyễn Hương", score:8, type:"Giỏi"}
+];
+
+var filteredStudents = students;
+var tang = true;
+
+function renderTable(){
+
+    var body = document.getElementById("tableBody");
+    body.innerHTML="";
+
+    if(filteredStudents.length==0){
+        body.innerHTML="<tr><td colspan='3'>Không có kết quả</td></tr>";
+        return;
+    }
+
+    for(var i=0;i<filteredStudents.length;i++){
+
+        var s = filteredStudents[i];
+
+        var row="<tr>";
+        row += "<td>"+s.name+"</td>";
+        row += "<td>"+s.score+"</td>";
+        row += "<td>"+s.type+"</td>";
+        row += "</tr>";
+
+        body.innerHTML += row;
+    }
+}
+
+function applyFilters(){
+
+    var keyword=document.getElementById("search").value.toLowerCase();
+    var type=document.getElementById("filter").value;
+
+    filteredStudents = students.filter(function(s){
+
+        var dk1 = s.name.toLowerCase().includes(keyword);
+        var dk2 = (type=="all" || s.type==type);
+
+        return dk1 && dk2;
+
+    });
+
+    filteredStudents.sort(function(a,b){
+
+        if(tang){
+            return a.score-b.score;
+        }
+        else{
+            return b.score-a.score;
+        }
+
+    });
+
+    renderTable();
+}
+
+document.getElementById("search").addEventListener("input",applyFilters);
+document.getElementById("filter").addEventListener("change",applyFilters);
+
+document.getElementById("diem").addEventListener("click",function(){
+
+    tang=!tang;
+    applyFilters();
+
+});
+
+renderTable();
+
+</script>
+
+</body>
+</html>
