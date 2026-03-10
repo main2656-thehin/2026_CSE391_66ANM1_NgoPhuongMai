@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Form Đặt Hàng</title>
+<style>
+.error{color:red;font-size:13px}
+#confirm{display:none;border:1px solid #ccc;padding:10px;margin-top:10px}
+</style>
+</head>
+
+<body>
+
+<h2>Đặt hàng</h2>
+
+<form id="form">
+
+Tên sản phẩm<br>
+<select id="product">
+<option value="">-- Chọn sản phẩm --</option>
+<option value="ao">Áo</option>
+<option value="quan">Quần</option>
+<option value="giay">Giày</option>
+</select>
+<div id="e1" class="error"></div>
+
+<br>
+
+Số lượng<br>
+<input type="number" id="qty">
+<div id="e2" class="error"></div>
+
+<br>
+
+Ngày giao hàng<br>
+<input type="date" id="date">
+<div id="e3" class="error"></div>
+
+<br>
+
+Địa chỉ giao<br>
+<input type="text" id="address">
+<div id="e4" class="error"></div>
+
+<br>
+
+Ghi chú<br>
+<textarea id="note"></textarea>
+<div id="count">0/200</div>
+<div id="e5" class="error"></div>
+
+<br>
+
+Thanh toán<br>
+<input type="radio" name="pay" value="cod">COD
+<input type="radio" name="pay" value="bank">Chuyển khoản
+<input type="radio" name="pay" value="momo">Ví điện tử
+<div id="e6" class="error"></div>
+
+<br><br>
+
+Tổng tiền: <span id="total">0</span> đ
+
+<br><br>
+
+<button type="submit">Đặt hàng</button>
+
+</form>
+
+<div id="confirm"></div>
+
+<script>
+
+let prices={
+ao:150000,
+quan:200000,
+giay:300000
+}
+
+let product=document.getElementById("product")
+let qty=document.getElementById("qty")
+let date=document.getElementById("date")
+let address=document.getElementById("address")
+let note=document.getElementById("note")
+
+function err(id,msg){
+document.getElementById(id).innerText=msg
+}
+
+function clear(id){
+document.getElementById(id).innerText=""
+}
+
+function vProduct(){
+if(product.value==""){
+err("e1","Vui lòng chọn sản phẩm")
+return false
+}
+clear("e1")
+return true
+}
+
+function vQty(){
+let x=Number(qty.value)
+if(x<1||x>99){
+err("e2","Số lượng từ 1-99")
+return false
+}
+clear("e2")
+return true
+}
+
+function vDate(){
+
+let today=new Date()
+let d=new Date(date.value)
+
+let max=new Date()
+max.setDate(today.getDate()+30)
+
+if(d<today){
+err("e3","Ngày không được trong quá khứ")
+return false
+}
+
+if(d>max){
+err("e3","Không quá 30 ngày")
+return false
+}
+
+clear("e3")
+return true
+}
+
+function vAddress(){
+if(address.value.trim().length<10){
+err("e4","Địa chỉ ít nhất 10 ký tự")
+return false
+}
+clear("e4")
+return true
+}
+
+function vNote(){
+if(note.value.length>200){
+err("e5","Không quá 200 ký tự")
+return false
+}
+clear("e5")
+return true
+}
+
+function vPay(){
+let p=document.querySelector("input[name='pay']:checked")
+if(!p){
+err("e6","Chọn phương thức thanh toán")
+return false
+}
+clear("e6")
+return true
+}
+
+function calc(){
+
+let p=product.value
+let q=Number(qty.value)
+
+if(prices[p]&&q){
+let t=prices[p]*q
+document.getElementById("total").innerText=
+t.toLocaleString("vi-VN")
+}
+
+}
+
+product.onchange=calc
+qty.oninput=calc
+
+note.oninput=function(){
+
+let l=note.value.length
+document.getElementById("count").innerText=l+"/200"
+
+if(l>200)
+document.getElementById("count").style.color="red"
+else
+document.getElementById("count").style.color="black"
+
+}
+
+form.onsubmit=function(e){
+
+e.preventDefault()
+
+let ok=
+vProduct()&
+vQty()&
+vDate()&
+vAddress()&
+vNote()&
+vPay()
+
+if(ok){
+
+let t=document.getElementById("total").innerText
+
+confirm.innerHTML=
+"Bạn đặt "+product.options[product.selectedIndex].text+
+"<br>Số lượng: "+qty.value+
+"<br>Tổng tiền: "+t+" đ"+
+"<br>Ngày giao: "+date.value+
+"<br><br>"+
+"<button onclick='done()'>Xác nhận</button>"+
+"<button onclick=\"confirm.style.display='none'\">Hủy</button>"
+
+confirm.style.display="block"
+
+}
+
+}
+
+function done(){
+confirm.innerHTML="Đặt hàng thành công 🎉"
+}
+
+</script>
+
+</body>
+</html>
